@@ -13,8 +13,11 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 ## 1. Audio Data
 
 * 2018.02.03: 51.6 시간 한국어 학습데이터 (22,263 발화, 105명, 3000 문장)
+* License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 현재 제로스 프로젝트에는 상기와 같은 음성데이터가 포함되어 있습니다.
 공개 음성 DB 구축에 참여할 수 있는 음성 녹음 앱 [모아코인(Android)](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)을 제공하고 있으며, 
 해당 앱을 통해 음성 데이터를 1시간 기부해주시면 해당 시점까지 구축된 공개 음성 DB에 접근하여 다운로드할 수 있는 권한을
 AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 credential은 12 시간 동안 유효합니다.
+
+
