@@ -1,5 +1,6 @@
 # Project: Zeroth
-Kaldi-based Korean ASR open-source project
+* Kaldi-based Korean ASR open-source project
+* License: Apache 2.0
 
 Zeroth 프로젝트는 Kaldi open source tool-kit 을 사용해서  한국어 음성인식기를 구현하는 프로젝트 입니다. 
 이 프로젝트는 기업이 AI를 고객 서비스에 추가하는 데 도움이되는 [(주)아틀라스가이드](https://www.goodatlas.com)의 AI 플랫폼 개발의 일부로서 개발되었습니다. 
