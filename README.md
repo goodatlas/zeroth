@@ -12,6 +12,14 @@ Kaldi official recipe 에 한국어 버전을 소개하는 것을 시작으로,
 
 Contact: Lucas Jo (lucasjo@goodatlas.com)
 
+### Special thanks 
+
+* [Gridspace Inc.](https://www.gridspace.com) 사에서 일하고 계신 Wonkyum Lee 님과의 co-work 를 통해 이 프로젝트를 진행하고 있음을 밝힙니다. 
+
+### Mentioned records
+* [Interview](http://blog.naver.com/fastcampus/221181060609) with FastCampus
+* [딥러닝-음성인식 CAMP](http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
+
 ## 1. Audio Data
 
 * 2018.02.03: 51.6 시간 한국어 학습데이터 (22,263 발화, 105명, 3000 문장)
@@ -27,4 +35,14 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
 ## 2. Requirements
 
 * 제로스 프로젝트를 실행하는데 필요한 패키지들에 대한 설명은 [Requirements](https://github.com/goodatlas/zeroth/wiki/Requirements)
-위키 페이지를 참조하시기 
+위키 페이지를 참조하시기 바랍니다.
+
+## 3. Acoustic Model
+현재 제로스 프로젝트 음향모델에는 아래와 같은 최신 kaldi recipe 가 적용되어 있습니다.
+
+* TDNN + LSTM 
+* Chain model
+* Data augmentation of reverberant speech
+
+## 4. Language Model & Lexicon
+언어모델과 발음사전을 구현하기 위한 코드가 곧 업데이트 될 예정입니다.
