@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+import sys
+import os
+import re
+import fileinput
+import argparse
+import subprocess
+
+def file_len(fname):
+    p = subprocess.Popen(['wc', '-l', fname], stdout=subprocess.PIPE, 
+                                              stderr=subprocess.PIPE)
+    result, err = p.communicate()
+    if p.returncode != 0:
+        raise IOError(err)
+    return int(result.strip().split()[0])
+
+def splitText(args):
+
+    if args.infile == sys.stdin:
+        f = sys.stdin
+        if args.refFile is not None:
+            total_lines = file_len(args.refFile)
+        else:
+            print('plz set reference file to get line number with -f option', file=sys.stderr)
+            sys.exit()
+    else:
+        f = args.infile
+        total_lines = file_len(f)
+    testset_lines = int(total_lines / args.ratio)
+    print("lines for test set: {}".format(testset_lines), file=sys.stderr)
+
+    f_test  = open(args.prefix+".test", 'w')
+    f_train = open(args.prefix+".train", 'w')
+
+    nCount = 0
+    for line in f:
+        if nCount < testset_lines:
+            print(line.strip(), file=f_test)
+        else:
+            print(line.strip(), file=f_train)
+        nCount += 1
+    f_test.close()
+    f_train.close()
+
+
+
+def main():
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('-t', '--ratio', dest='ratio', type=int, help='the ratio of line number to split, ex 10 means 1/10')
+    parser.add_argument('-f', '--ref', dest='refFile', default=None, help='reference file to get line number')
+    parser.add_argument('infile', default=sys.stdin, type=argparse.FileType('r'))
+    parser.add_argument('prefix',default="a")
+    args = parser.parse_args()
+
+    print("ratio: {}".format(args.ratio), file=sys.stderr)
+    print("ref. file: {}".format(args.refFile), file=sys.stderr)
+    
+    splitText(args)
+
+if __name__ == '__main__':
+    main()
