@@ -45,4 +45,25 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
 * Data augmentation of reverberant speech
 
 ## 4. Language Model & Lexicon
-언어모델과 발음사전을 구현하기 위한 코드가 곧 업데이트 될 예정입니다.
+제로스 프로젝트에 사용되는 언어모델과 발음사전은 처음부터 끝까지 data-driven 방식으로 만들어집니다.
+언어모델과 발음사전을 만드는 세부적인 방법은 
+[여기](https://github.com/goodatlas/zeroth/blob/master/s5/data/local/lm/README.md)에 기술되어 있으니 
+참조하시기 바랍니다.
+
+아래는 [AWS-temporary-credential](https://github.com/goodatlas/zeroth/wiki/AWS-temporary-credential)
+을 발급받은 경우 오디오 데이터와 함께 자동으로 받아지는 언어모델과 발음사전의 세부사항입니다.
+
+* 말뭉치(Corpus)
+  * 훈련된 문장의 수: 87,657,039
+  * 테스트 문장의 수:  9,739,615
+  * 전 체:         97,396,654
+
+* 발음사전(Lexicon)
+  * 고유한 단어의 수: 26,333,192 
+  * 상위 98% 빈도 수를 보이는 고유한 단어의 수: 7,859,278
+  * Data-drive 방식으로 찾은 고유한 형태소의 수: 440,653
+  * 발음 다양성을 고려한 발음사전의 크기: 668,882
+
+* 언어모델(Language Model)
+  * Perplexity test 3-gram: ppl= 234.7697 (9739739 sentences, 157268940 words, 21519 OOVs
+  * Perplexity test 4-gram: ppl= 200.0006 (9739739 sentences, 157268940 words, 21519 OOVs)
