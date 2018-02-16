@@ -36,6 +36,8 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
 
 * 제로스 프로젝트를 실행하는데 필요한 패키지들에 대한 설명은 [Requirements](https://github.com/goodatlas/zeroth/wiki/Requirements)
 위키 페이지를 참조하시기 바랍니다.
+* 언어모델과 발음사전을 구현하는 코드를 직접 실행하기 위해서는 [Requirements-2](https://github.com/goodatlas/zeroth/wiki/Requirement-2)
+위키 페이지를 참조하여 추가적인 패키지를 설치하시기 바랍니다.
 
 ## 3. Acoustic Model
 현재 제로스 프로젝트 음향모델에는 아래와 같은 최신 kaldi recipe 가 적용되어 있습니다.
@@ -47,7 +49,7 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
 ## 4. Language Model & Lexicon
 제로스 프로젝트에 사용되는 언어모델과 발음사전은 처음부터 끝까지 data-driven 방식으로 만들어집니다.
 언어모델과 발음사전을 만드는 세부적인 방법은 
-[여기](https://github.com/goodatlas/zeroth/blob/master/s5/data/local/lm/README.md)에 기술되어 있으니 
+[s5/data/local/lm/README.md ](https://github.com/goodatlas/zeroth/blob/master/s5/data/local/lm/README.md)에 기술되어 있으니 
 참조하시기 바랍니다.
 
 아래는 [AWS-temporary-credential](https://github.com/goodatlas/zeroth/wiki/AWS-temporary-credential)
