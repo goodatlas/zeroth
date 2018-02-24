@@ -4,9 +4,19 @@
 # Apache 2.0
 # 
 # Build a task-domain Language Model
+exists(){
+    command -v "$1" >/dev/null 2>&1
+}
 
-. ./cmd.sh
+# check parallel installed
+if ! exists parallel; then
+    echo "Please, install parallel"
+    echo "-  sudo apt-get install parallel"
+    exit 1
+fi
+
 . ./path.sh
+. ./cmd.sh
 
 cmd=$normalize_cmd
 srcdir=buildLM/_corpus_task_
@@ -20,6 +30,7 @@ date=$(date +'%F-%H-%M')
 echo start at $date
 
 if [ ! -f $srcdir/morfessor.model.pickled ]; then
+	echo "Fetch Morfessor segment model from the official Zeroth project"
 	morfessor -l zeroth_morfessor.seg \
 		-S morfessor.model.txt \
 		-x morfessor.lexicon
@@ -60,7 +71,6 @@ if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]]; then
 fi
 
 # Normalization
-echo 'Text normalization starts ---------------------------------------------------'
 nj=$(cat $srcdir/num_jobs)
 logdir=$srcdir/log
 if [ ! -d $logdir ]; then
@@ -68,6 +78,7 @@ if [ ! -d $logdir ]; then
 fi
 
 if [ ! -e $srcdir/normedCorpus.1 ] ; then
+	echo 'Text normalization starts ---------------------------------------------------'
     for n in $(seq $nj); do
         # the next command does nothing unless _corpus_task_/storage/ exists, see
         # utils/create_data_link.pl for more info.
@@ -81,8 +92,8 @@ if [ ! -e $srcdir/normedCorpus.1 ] ; then
         $scriptdir/strip.py  \> $srcdir/normedCorpus.JOB || exit 1;
 fi
 
-echo 'Finding Uniq. words for morpheme analysis --------------------------------------'
 if [ ! -e $srcdir/uniqWords.1 ] ; then
+	echo 'Finding Uniq. words for morpheme analysis --------------------------------------'
     for n in $(seq $nj); do
         # the next command does nothing unless _corpus_task_/storage/ exists, see
         # utils/create_data_link.pl for more info.
@@ -94,8 +105,8 @@ if [ ! -e $srcdir/uniqWords.1 ] ; then
         sort -k1 -n -r \> $srcdir/uniqWords.JOB || exit 1;
 fi
 
-echo "Accumulate statistics into: uniqWordList ------------------------------------------"
 if [ ! -f $srcdir/uniqWordList ]; then
+	echo "Accumulate statistics into: uniqWordList ------------------------------------------"
     cat $srcdir/uniqWords.* | \
         $scriptdir/sumStatUniqWords.py > $srcdir/uniqWordList
     stat=$(awk 'BEGIN{sum=0;cnt=0}{cnt+=1;if($2 == 1){sum+=1}}END{print sum"/"cnt}' $srcdir/uniqWordList)
@@ -104,13 +115,13 @@ if [ ! -f $srcdir/uniqWordList ]; then
     echo "  $percentage"
 fi
 
-echo "Pruning uniqWordList for Morfessor training -----------------------------------------"
 coverage=1.00
 srcFile=$srcdir/uniqWordList
 inFile=$srcdir/uniqWordList.hangul
 inFile2=$srcdir/uniqWordList.nonhangul
 outFile=$srcdir/uniqWordList.hangul.pruned
 if [ ! -f $inFile ]; then
+	echo "Pruning uniqWordList for Morfessor training -----------------------------------------"
     grep -E '[가-힣]+ [0-9]+' $srcFile |\
 		awk -v file=$inFile '{if(length($1)<=10 || $2>5){print $0}else{print $0 > file".remained"}}' > $inFile  ##  
 	grep -v -E '[가-힣]+ [0-9]+' $srcFile > $inFile2
@@ -123,8 +134,8 @@ if [ ! -f $inFile ]; then
 	echo "  final uniq. word for training: $(wc -l <$outFile)"
 fi
 
-echo 'Morfessor model training (Update) ----------------------------------------------------'
 if $morfessorUpdate; then
+	echo 'Morfessor model training (Update) ----------------------------------------------------'
 	rm -f $srcdir/morfessor.* # remove symbolic link
 
 	# CAUTION:
@@ -142,9 +153,9 @@ if $morfessorUpdate; then
 
 fi
 
-echo 'Morpheme segmentation --------------------------------------------------------------'
 # The Morfessor should be installed in the all Grid machines
 if [ ! -f $srcdir/normedCorpus.seg.1 ]; then
+	echo 'Morpheme segmentation --------------------------------------------------------------'
     for n in $(seq $nj); do
         # the next command does nothing unless _corpus_task_/storage/ exists, see
         # utils/create_data_link.pl for more info.
@@ -157,9 +168,9 @@ if [ ! -f $srcdir/normedCorpus.seg.1 ]; then
 		--nosplit-re "'[0-9\[\]\(\){}a-zA-Z&.,\-]+'"
 fi
 
-echo 'Extract uniq Morphemes ----------------------------------------------------------'
 # nonHangulList from general domain (freq. > 10)  + morphemes from Morfessor
 if [ ! -f $srcdir/morphemes ]; then
+	echo 'Extract uniq Morphemes ----------------------------------------------------------'
 
 	cat $srcdir/uniqWordList.nonhangul | grep -E "^[A-Z]+ " > $srcdir/uniqWordList.nonhangul.alphabet
 	cat $srcdir/uniqWordList.nonhangul | grep -v -E "^[A-Z]+ " | awk '{print $1}' > $srcdir/morphemes.etc
@@ -183,16 +194,16 @@ if [ ! -f $srcdir/morphemes ]; then
 		$srcdir/morphemes
 fi
 
-echo "Starts to build lexicon ----------------------------------------------------------"
 if [ ! -f $srcdir/lexicon ]; then
 (
+	echo "Starts to build lexicon ----------------------------------------------------------"
 	$scriptdir/buildLexicon.sh $srcdir $srcdir/morfessor.model.txt
 )&
 fi
 
-echo "Starts to build n-gram language model ---------------------------------------------"
 if [ ! -f $srcdir/corpus.lm.fg.arpa.gz ]; then
 (
+	echo "Starts to build n-gram language model ---------------------------------------------"
 	$scriptdir/buildNGRAM.sh $srcdir
 )&
 fi

@@ -14,6 +14,7 @@
 export train_cmd="run.pl --mem 2G"
 export decode_cmd="run.pl --mem 4G"
 export mkgraph_cmd="run.pl --mem 8G"
+export normalize_cmd="run.pl --mem 4G"
 
 hostInAtlas="ares hephaestus jupiter neptune"
 if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]]; then
@@ -21,5 +22,6 @@ if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]]; then
 	export train_cmd="queue.pl --config $queue_conf --mem 4G"
 	export decode_cmd="queue.pl --config $queue_conf --mem 8G"
 	export mkgraph_cmd="queue.pl --config $queue_conf --mem 16G"
+	export normalize_cmd="queue.pl --config $queue_conf --mem 4G"
 fi
 

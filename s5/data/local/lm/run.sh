@@ -52,20 +52,26 @@ set -e
 date=$(date +'%F-%H-%M')
 echo start at $date
 # Download rawCorpus
-echo "Now download raw corpus -------------------------------------------------"
-for corpus in $corpusList; do
-    $scriptdir/download_corpus.sh $corpus $srcdir
-done
+#  raw text corpus is not open-source, plz use run_task.sh
+#  
+#echo "Now download raw corpus -------------------------------------------------"
+#for corpus in $corpusList; do
+#    $scriptdir/download_corpus.sh $corpus $srcdir
+#done
+#
+#echo 'Untar all ----------------------------------------------------------------'
+#for corpus in $(find $srcdir -name "*.tar.gz"); do
+#    tardir=$(echo $corpus | sed -E 's/.tar.gz//g')
+#    if [ -d $tardir ]; then
+#        echo "  $corpus is already untar-ed"
+#        continue
+#    fi
+#    tar -zxvf $corpus -C $srcdir
+#done
 
-echo 'Untar all ----------------------------------------------------------------'
-for corpus in $(find $srcdir -name "*.tar.gz"); do
-    tardir=$(echo $corpus | sed -E 's/.tar.gz//g')
-    if [ -d $tardir ]; then
-        echo "  $corpus is already untar-ed"
-        continue
-    fi
-    tar -zxvf $corpus -C $srcdir
-done
+echo "Raw text corpus is not open-source, this code is not working"
+echo "  plz use run_task.sh"
+exit 1
 
 #  split corpus into similar length around 1,000,000 line
 echo 'Split corpus --------------------------------------------------------------'
