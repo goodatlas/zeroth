@@ -192,7 +192,8 @@ echo "#### online chain training  ###########"
 ## check point: sudo nvidia-smi --compute-mode=3 if you have multiple GPU's
 #local/chain/run_tdnn_1a.sh
 #local/chain/run_tdnn_1b.sh
-local/chain/multi_condition/run_tdnn_lstm_1e.sh --nj $nCPU
+#local/chain/multi_condition/run_tdnn_lstm_1e.sh --nj $nCPU
+local/chain/multi_condition/run_tdnn_1n.sh --nj $nCPU 
 
 #echo "DNN training  is finished" |\
 #	mail -s "[alarm]finishing" -aFrom:jupiter lucasjo@goodatlas.com
