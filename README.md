@@ -66,5 +66,5 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
   * 발음 다양성을 고려한 발음사전의 크기: 688,503
 
 * 언어모델(Language Model)
-  * Perplexity test 3-gram: ppl= 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+  * Perplexity test 3-gram: ppl= 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
   * Perplexity test 4-gram: ppl= 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
