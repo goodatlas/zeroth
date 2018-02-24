@@ -42,7 +42,7 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
 ## 3. Acoustic Model
 현재 제로스 프로젝트 음향모델에는 아래와 같은 최신 kaldi recipe 가 적용되어 있습니다.
 
-* TDNN + LSTM 
+* TDNN (with Factorization) / TDNN + LSTM / TDNN + OPGRU 
 * Chain model
 * Data augmentation of reverberant speech
 
