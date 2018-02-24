@@ -29,6 +29,12 @@ set -e
 date=$(date +'%F-%H-%M')
 echo start at $date
 
+if [ ! -f zeroth_morfessor.seg ]; then
+	echo "file:  zeroth_morfessor.seg is missing"
+	echo "Did you download it from AWS temprorary credential? Plz check it"
+	exit 1
+fi
+
 if [ ! -f $srcdir/morfessor.model.pickled ]; then
 	echo "Fetch Morfessor segment model from the official Zeroth project"
 	morfessor -l zeroth_morfessor.seg \

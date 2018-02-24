@@ -20,13 +20,15 @@ fi
 srcdir=$1
 model=$2
 nonHangulList="$srcdir/morphemes.alphabet $srcdir/morphemes.etc"
-if [ -d buildLM/_corpus_task_ ]; then
-	if [ -f buildLM/_corpus_task_/morphemes.alphabet ]; then
-		nonHangulList="buildLM/_corpus_task_/morphemes.alphabet "$nonHangulList
-	fi
-	if [ -f buildLM/_corpus_task_/morphemes.etc ]; then
-		nonHangulList="buildLM/_corpus_task_/morphemes.etc "$nonHangulList
-	fi
+if [ $srcdir != buildLM/_corpus_task_ ] && [ -d buildLM/_corpus_task_ ]; then
+    echo "  merging morphemes from buildLM/_corpus_task_"
+
+    if [ -f buildLM/_corpus_task_/morphemes.alphabet ]; then
+        nonHangulList="buildLM/_corpus_task_/morphemes.alphabet "$nonHangulList
+    fi
+    if [ -f buildLM/_corpus_task_/morphemes.etc ]; then
+        nonHangulList="buildLM/_corpus_task_/morphemes.etc "$nonHangulList
+    fi
 fi
 
 set -e 
