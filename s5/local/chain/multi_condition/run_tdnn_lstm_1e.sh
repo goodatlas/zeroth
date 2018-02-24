@@ -86,7 +86,7 @@ fi
 gmm_dir=exp/${gmm}
 clean_lat_dir=exp/${gmm}_${train_set}_lats
 lat_dir=${clean_lat_dir}_rvb${num_data_reps}
-dir=exp/chain/tdnn_lstm_${affix}
+dir=exp/chain_rvb/tdnn_lstm_${affix}
 train_data_dir=data/${train_set}_rvb${num_data_reps}_hires
 train_ivector_dir=exp/nnet3_rvb/ivectors_${train_set}_rvb${num_data_reps}_hires
 lores_train_data_dir=data/${train_set}
@@ -94,7 +94,7 @@ lores_train_data_dir=data/${train_set}
 # note: you don't necessarily have to change the treedir name
 # each time you do a new experiment-- only if you change the
 # configuration in a way that affects the tree.
-tree_dir=exp/chain/tree_a
+tree_dir=exp/chain_rvb/tree_a
 # the 'lang' directory is created by this script.
 # If you create such a directory with a non-standard topology
 # you should probably name it differently.

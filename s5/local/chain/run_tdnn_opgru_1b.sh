@@ -40,9 +40,6 @@ num_jobs_initial=2
 num_jobs_final=7
 num_epochs=8
 dropout_schedule='0,0@0.20,0.2@0.50,0'
-minibatch_size=128
-initial_effective_lrate=0.0015
-final_effective_lrate=0.0002
 remove_egs=true
 
 
