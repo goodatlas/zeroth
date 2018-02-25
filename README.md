@@ -25,7 +25,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ## 1. Audio Data
 
-* 2018.02.03: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 people, 3000 sentences)
+* As of 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 people, 3000 sentences)
 * License: [CC BY 4.0] (https://creativecommons.org/licenses/by/4.0/)
 
 We offer a voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin) that you can use to participate in building our open source database of Korean training data.
@@ -61,7 +61,6 @@ To create a custom language model and phonetic dictionary: [s5 / data / local / 
 * Language Model
  * Perplexity test 3-gram: ppl = 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
   Perplexity test 4-gram: ppl = 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
-
 
 Zeroth 프로젝트는 Kaldi open source tool-kit 을 사용해서 한국어 음성인식기를 구현하는 프로젝트 입니다. 
 이 프로젝트는 기업이 AI를 고객 서비스에 추가하는 데 도움이되는 [(주)아틀라스가이드](https://www.goodatlas.com)의 Language AI 플랫폼 개발의 일부로서 개발되었습니다. 
