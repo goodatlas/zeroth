@@ -1,6 +1,5 @@
 # Project: Zeroth
 * Kaldi-based Korean ASR open-source project
-* 칼디를 이용하여 구축하는 한국어 음성인식
 * License: Apache 2.0
 
 Zeroth is an open source project for Korean speech recognition implemented using the Kaldi toolkit.
@@ -59,8 +58,14 @@ To create a custom language model and phonetic dictionary: [s5 / data / local / 
   * Size of phonetic dictionary considering pronunciation diversity: 688,503
 
 * Language Model
- * Perplexity test 3-gram: ppl = 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
-  Perplexity test 4-gram: ppl = 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+  * Perplexity test 3-gram: ppl = 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+  * Perplexity test 4-gram: ppl = 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+
+***
+
+# Project: Zeroth
+* 칼디를 이용하여 구축하는 한국어 음성인식
+* License: Apache 2.0
 
 Zeroth 프로젝트는 Kaldi open source tool-kit 을 사용해서 한국어 음성인식기를 구현하는 프로젝트 입니다. 
 이 프로젝트는 기업이 AI를 고객 서비스에 추가하는 데 도움이되는 [(주)아틀라스가이드](https://www.goodatlas.com)의 Language AI 플랫폼 개발의 일부로서 개발되었습니다. 
