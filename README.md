@@ -3,8 +3,67 @@
 * 칼디를 이용하여 구축하는 한국어 음성인식
 * License: Apache 2.0
 
+Zeroth is an open source project for Korean speech recognition implemented using the Kaldi open source toolkit.
+
+This project was developed as part of the development of Atlas’s (https://www.goodatlas.com) Language AI platform, which enables enterprises to add intelligence to their B2C communications.
+
+By introduction Korean to Kaldi as an official recipe, this project aims to make Korean speech recognition more broadly accessible and available to everyone.
+
+The name Zeroth implies 0-th, or the 0th. As the name suggests, this project’s aim to be the starting point and a foundational piece upon which anyone can build useful products and services using speech recognition. We hope this project is useful and welcome any opportunities to discuss or work together.
+
+Contact: Lucas Jo (lucasjo@goodatlas.com)
+
+### Special thanks
+
+* Wonkyum Lee at [Gridspace Inc.] (https://www.gridspace.com).
+
+### Mentioned links
+* [Interview] (http://blog.naver.com/fastcampus/221181060609) with FastCampus
+* [Deep Learning - Speech Recognition CAMP] (http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
+
+## 1. Audio Data
+
+* 2018.02.03: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 people, 3000 sentences)
+* License: [CC BY 4.0] (https://creativecommons.org/licenses/by/4.0/)
+
+We offer a voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin) that you can use to participate and help build our open source database of Korean training data.
+
+## 2. Requirements
+
+* [Requirements] description of packages needed to run the Zeroth project: https://github.com/goodatlas/zeroth/wiki/Requirements)
+* [Requirements-2] additional packages to execute code for the language model and phonetic dictionary: (https://github.com/goodatlas/zeroth/wiki/Requirement-2) 
+
+## Acoustic Model
+The latest Kaldi recipe is applied to the Zeroth's acoustic model.
+
+* TDNN (with Factorization) / TDNN + LSTM / TDNN + OPGRU
+* Chain model
+* Data augmentation of reverberant speech
+
+## Language Model & Lexicon
+Zeroth's language model and phonetic dictionary use an end-to-end data driven approach.
+
+Any contributions to our open source audio database will automatically be incorporated into the latest language models and phonetic dictionary. 
+
+To create a custom language model and phonetic dictionary: [s5 / data / local / lm / README.md] (https://github.com/goodatlas/zeroth/blob/master/s5/data/local/lm/README.md).
+
+* Corpus (Corpus)
+  * Training sentences: 108,408,327
+  * Test sentences: 12,045,282
+  * Total: 120,453,609
+
+* Phonetic Dictionary
+  * Unique words: 29,832,494
+  * Unique words with the highest 98% frequency: 7,991,121
+  * Unique morphemes: 458,406
+  * Size of phonetic dictionary considering pronunciation diversity: 688,503
+
+* Language Model
+ * Perplexity test 3-gram: ppl = 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+  Perplexity test 4-gram: ppl = 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+
 Zeroth 프로젝트는 Kaldi open source tool-kit 을 사용해서 한국어 음성인식기를 구현하는 프로젝트 입니다. 
-이 프로젝트는 기업이 AI를 고객 서비스에 추가하는 데 도움이되는 [(주)아틀라스가이드](https://www.goodatlas.com)의 AI 플랫폼 개발의 일부로서 개발되었습니다. 
+이 프로젝트는 기업이 AI를 고객 서비스에 추가하는 데 도움이되는 [(주)아틀라스가이드](https://www.goodatlas.com)의 Language AI 플랫폼 개발의 일부로서 개발되었습니다. 
 Kaldi official recipe 에 한국어 버전을 소개하는 것을 시작으로, 
 많은 사람들의 참여를 통해 누구나 사용할 수 있는 음성인식기를 만들어 나갈 수 있도록 하는 것을 목표로하는 프로젝트입니다.
 제로스라는 이름은 0-th, 즉 0 번째를 의미합니다. 이름이 의미하는 것처럼 이 프로젝트를 통해 음성인식기를 
@@ -16,7 +75,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 * [Gridspace Inc.](https://www.gridspace.com) 사에서 일하고 계신 Wonkyum Lee 님과의 co-work 를 통해 이 프로젝트를 진행하고 있음을 밝힙니다. 
 
-### Mentioned records
+### Mentioned links
 * [Interview](http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [딥러닝-음성인식 CAMP](http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
 
