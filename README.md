@@ -3,7 +3,7 @@
 * 칼디를 이용하여 구축하는 한국어 음성인식
 * License: Apache 2.0
 
-Zeroth is an open source project for Korean speech recognition implemented using the Kaldi open source toolkit.
+Zeroth is an open source project for Korean speech recognition implemented using the Kaldi toolkit.
 
 This project was developed as part of Atlas’s (https://www.goodatlas.com) Language AI platform, which enables enterprises to add intelligence to their B2C communications.
 
