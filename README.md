@@ -16,7 +16,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ### Special thanks
 
-* Zeroth was developed in collaboration with Wonkyum Lee at [Gridspace Inc.] (https://www.gridspace.com).
+* Zeroth was developed in collaboration with Wonkyum Lee (wonkyum@gridspace.com) at [Gridspace Inc.] (https://www.gridspace.com).
 
 ### Mentioned links
 * [Interview] (http://blog.naver.com/fastcampus/221181060609) with FastCampus
