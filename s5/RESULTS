@@ -1,8 +1,7 @@
 # In the results below, "tgsmall" is the pruned 3-gram LM, which is used for lattice generation.
 # The following language models are then used for rescoring:
-# a) tgmed- slightly less pruned 3-gram LM
-# b) tglarge- the full, non-pruned 3-gram LM
-# c) fglarge- non-pruned 4-gram LM
+# a) tglarge- the full, non-pruned 3-gram LM
+# b) fglarge- non-pruned 4-gram LM
 # The "test-clean" sets generally contain, relatively cleaner Korean speech,
 # the "test_200" are subset of "test-clean", designed for quick evaluation
 
