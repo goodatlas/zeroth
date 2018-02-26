@@ -16,7 +16,6 @@ nnet3_affix=       # affix for exp dirs, e.g. it was _cleaned in tedlium.
 # Options which are not passed through to run_ivector_common.sh
 affix=1c  #affix for TDNN directory e.g. "1a" or "1b", in case we change the configuration.
 common_egs_dir=
-reporting_email=
 
 # OPGRU/chain options
 train_stage=-10
@@ -37,8 +36,10 @@ extra_right_context=0
 # training options
 srand=0
 num_jobs_initial=2
-num_jobs_final=7
+num_jobs_final=12
 num_epochs=8
+initial_effective_lrate=0.001
+final_effective_lrate=0.0001
 dropout_schedule='0,0@0.20,0.2@0.50,0'
 remove_egs=true
 
@@ -229,8 +230,8 @@ if [ $stage -le 12 ]; then
     --trainer.optimization.shrink-value 0.99 \
     --trainer.optimization.num-jobs-initial $num_jobs_initial \
     --trainer.optimization.num-jobs-final $num_jobs_final \
-    --trainer.optimization.initial-effective-lrate 0.001 \
-    --trainer.optimization.final-effective-lrate 0.0001 \
+    --trainer.optimization.initial-effective-lrate $initial_effective_lrate \
+    --trainer.optimization.final-effective-lrate $final_effective_lrate \
     --trainer.max-param-change $max_param_change \
     --trainer.deriv-truncate-margin 8 \
     --cleanup.remove-egs true \

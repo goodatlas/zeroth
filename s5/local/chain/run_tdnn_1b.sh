@@ -16,7 +16,6 @@ nnet3_affix=       # affix for exp dirs, e.g. it was _cleaned in tedlium.
 # Options which are not passed through to run_ivector_common.sh
 affix=1b  #affix for TDNN directory e.g. "1a" or "1b", in case we change the configuration.
 common_egs_dir=
-reporting_email=
 
 # LSTM/chain options
 train_stage=-10
@@ -32,11 +31,11 @@ chunk_right_context=0
 # training options
 srand=0
 num_jobs_initial=2
-num_jobs_final=7
-num_epochs=3
+num_jobs_final=12
+num_epochs=4
 minibatch_size=128
-initial_effective_lrate=0.0015
-final_effective_lrate=0.0002
+initial_effective_lrate=0.001
+final_effective_lrate=0.0001
 remove_egs=true
 
 

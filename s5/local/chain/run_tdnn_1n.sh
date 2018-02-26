@@ -16,7 +16,6 @@ nnet3_affix=       # affix for exp dirs, e.g. it was _cleaned in tedlium.
 # Options which are not passed through to run_ivector_common.sh
 affix=1n  #affix for TDNN directory e.g. "1a" or "1b", in case we change the configuration.
 common_egs_dir=
-reporting_email=""
 
 # LSTM/chain options
 train_stage=-10
@@ -29,11 +28,11 @@ chunk_width=150,110,100
 
 # training options
 num_jobs_initial=2
-num_jobs_final=7
-num_epochs=5
+num_jobs_final=12
+num_epochs=6
 minibatch_size=128
-initial_effective_lrate=0.0015
-final_effective_lrate=0.0002
+initial_effective_lrate=0.001
+final_effective_lrate=0.0001
 remove_egs=true
 
 
@@ -221,7 +220,6 @@ if [ $stage -le 12 ]; then
     --egs.opts "--frames-overlap-per-eg 0" \
     --cleanup.remove-egs $remove_egs \
     --use-gpu true \
-    --reporting.email $reporting_email \
     --feat-dir $train_data_dir \
     --tree-dir $tree_dir \
     --lat-dir $lat_dir \

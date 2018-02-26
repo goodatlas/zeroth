@@ -17,8 +17,6 @@ nnet3_affix=_rvb       # affix for exp dirs, e.g. it was _cleaned in tedlium.
 # Options which are not passed through to run_ivector_common.sh
 affix=1e_rvb  #affix for TDNN directory e.g. "1a" or "1b", in case we change the configuration.
 common_egs_dir=
-reporting_email=
-#reporting_email=lucasjo@goodatlas.com
 
 # LSTM/chain options
 train_stage=-10
@@ -40,11 +38,11 @@ extra_right_context=0
 # training options
 srand=0
 num_jobs_initial=2
-num_jobs_final=2
-num_epochs=3
+num_jobs_final=12
+num_epochs=4
 minibatch_size=128
-initial_effective_lrate=0.0015
-final_effective_lrate=0.0002
+initial_effective_lrate=0.001
+final_effective_lrate=0.0001
 remove_egs=true
 
 
@@ -278,7 +276,6 @@ if [ $stage -le 12 ]; then
     --feat-dir $train_data_dir \
     --tree-dir $tree_dir \
     --lat-dir $lat_dir \
-	--reporting.email $reporting_email \
     --dir $dir  || exit 1;
 fi
 
