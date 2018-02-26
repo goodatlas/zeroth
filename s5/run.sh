@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Based mostly on the WSJ/Librispeech recipe. The training database is #####,
-# it consists of 95hrs korean speech with cleaned automatic transcripts:
+# it consists of 51hrs korean speech with cleaned automatic transcripts:
 #
 # http://www.openslr.org/resources (Mirror).
 #
@@ -182,8 +182,6 @@ done
 steps/align_fmllr.sh --nj $nCPU --cmd "$train_cmd" \
 	  data/train_clean data/lang exp/tri4b exp/tri4b_ali_train_clean
 
-#echo "GMM trainig is finished" |\
-#	mail -s "[alarm]finishing" -aFrom:jupiter lucasjo@goodatlas.com
 finishTime=$(date +'%F-%H-%M')
 echo "GMM trainig is finished at" $finishTime
 
@@ -193,10 +191,9 @@ echo "#### online chain training  ###########"
 #local/chain/run_tdnn_1a.sh
 #local/chain/run_tdnn_1b.sh
 #local/chain/multi_condition/run_tdnn_lstm_1e.sh --nj $nCPU
-local/chain/multi_condition/run_tdnn_1n.sh --nj $nCPU 
+#local/chain/multi_condition/run_tdnn_1n.sh --nj $nCPU 
+local/chain/run_tdnn_opgru_1c.sh --nj $nCPU
 
-#echo "DNN training  is finished" |\
-#	mail -s "[alarm]finishing" -aFrom:jupiter lucasjo@goodatlas.com
 
 finishTime=$(date +'%F-%H-%M')
 echo "DNN trainig is finished at" $finishTime
