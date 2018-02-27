@@ -22,6 +22,9 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * [Interview] (http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [Deep Learning - Speech Recognition CAMP] (http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
 
+## 0. Overview
+<img src="/doc/imgs/Zeroth.png" width="60%">
+
 ## 1. Audio Data
 
 * As of 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 people, 3000 sentences)
@@ -83,6 +86,9 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 ### Mentioned links
 * [Interview](http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [딥러닝-음성인식 CAMP](http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
+
+## 0. Overview
+<img src="/doc/imgs/Zeroth.png" width="60%">
 
 ## 1. Audio Data
 
