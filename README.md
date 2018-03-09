@@ -19,6 +19,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * Zeroth was developed in collaboration with Wonkyum Lee (wonkyum@gridspace.com) at [Gridspace Inc.] (https://www.gridspace.com).
 
 ### Mentioned links
+* [Data Science Seminar] (http://www.fastcampus.co.kr/data_camp_lab/) @ FastCampus
 * [Interview] (http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [Deep Learning - Speech Recognition CAMP] (http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
 
@@ -84,6 +85,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * [Gridspace Inc.](https://www.gridspace.com) 사에서 일하고 계신 Wonkyum Lee 님과의 co-work 를 통해 이 프로젝트를 진행하고 있음을 밝힙니다. 
 
 ### Mentioned links
+* [데이터 사이언스 논문 세미나](http://www.fastcampus.co.kr/data_camp_lab/) @ FastCampus
 * [Interview](http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [딥러닝-음성인식 CAMP](http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
 
