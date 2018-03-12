@@ -85,19 +85,37 @@ if [ $stage -le 3 ]; then
   rvb_opts+=(--rir-set-parameters "0.5, RIRS_NOISES/simulated_rirs/mediumroom/rir_list")
   rvb_opts+=(--noise-set-parameters RIRS_NOISES/pointsource_noises/noise_list)
 
-  python steps/data/reverberate_data_dir.py \
-    "${rvb_opts[@]}" \
-    --prefix "rev" \
-    --foreground-snrs "20:10:15:5:0" \
-    --background-snrs "20:10:15:5:0" \
-    --speech-rvb-probability 1 \
-    --pointsource-noise-addition-probability 1 \
-    --isotropic-noise-addition-probability 1 \
-    --num-replications ${num_data_reps} \
-    --max-noises-per-minute 10 \
-    --source-sampling-rate 16000 \
-    --include-original-data true \
-    data/${trainset} data/${trainset}_rvb${num_data_reps}
+
+  ### applied GridEngine for speed-up
+  logdir=data/${trainset}/log
+  mkdir -p $logdir
+  nj=40
+
+  utils/split_data.sh data/$trainset $nj
+
+  $train_cmd JOB=1:$nj $logdir/reverberate.JOB.log \
+      python steps/data/reverberate_data_dir.py \
+      "${rvb_opts[@]}" \
+      --prefix "rev" \
+      --foreground-snrs "20:10:15:5:0" \
+      --background-snrs "20:10:15:5:0" \
+      --speech-rvb-probability 1 \
+      --pointsource-noise-addition-probability 1 \
+      --isotropic-noise-addition-probability 1 \
+      --num-replications ${num_data_reps} \
+      --max-noises-per-minute 20 \
+      --source-sampling-rate 16000 \
+      --include-original-data true \
+      data/${trainset}/split$nj/JOB data/${trainset}/split$nj/JOB_rvb${num_data_reps} \
+      || exit 1
+
+  dirs=
+  for i in $(seq $nj); do
+    dirs+=" data/${trainset}/split$nj/${i}_rvb${num_data_reps}"
+  done
+  mkdir -p data/${trainset}_rvb${num_data_reps}
+  utils/combine_data.sh data/${trainset}_rvb${num_data_reps} $dirs
+  ###
 
   utils/copy_data_dir.sh data/${trainset}_rvb${num_data_reps} data/${trainset}_rvb${num_data_reps}_hires
   utils/data/perturb_data_dir_volume.sh data/${trainset}_rvb${num_data_reps}_hires
