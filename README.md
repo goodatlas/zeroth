@@ -20,6 +20,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ### Mentioned links
 * [Data Science Seminar] (http://www.fastcampus.co.kr/data_camp_lab/) @ FastCampus
+* [Workshop](https://www.kmobile.co.kr/shop/academy/음성인식-기술의-이해-및-음성인식-시스템kaldi-구현-1day-워/) @ kmobile
 * [Interview] (http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [Deep Learning - Speech Recognition CAMP] (http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
 
@@ -86,6 +87,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ### Mentioned links
 * [데이터 사이언스 논문 세미나](http://www.fastcampus.co.kr/data_camp_lab/) @ FastCampus
+* [워크샵](https://www.kmobile.co.kr/shop/academy/음성인식-기술의-이해-및-음성인식-시스템kaldi-구현-1day-워/) @ kmobile
 * [Interview](http://blog.naver.com/fastcampus/221181060609) with FastCampus
 * [딥러닝-음성인식 CAMP](http://www.fastcampus.co.kr/data_camp_dsr/) @ FastCampus
 
