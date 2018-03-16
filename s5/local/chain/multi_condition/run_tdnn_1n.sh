@@ -48,6 +48,10 @@ echo "$0 $@"  # Print the command line for logging
 . ./path.sh
 . ./utils/parse_options.sh
 
+local/nnet3/multi_condition/run_ivector_common.sh --stage $stage  \
+                                 --speed-perturb ${speed_perturb} \
+                                 --num-data-reps ${num_data_reps} \
+                                 --rvb-affix ${nnet3_affix}
 
 if ! cuda-compiled; then
   cat <<EOF && exit 1
@@ -56,11 +60,6 @@ If you want to use GPUs (and have them), go to src/, and configure and make on a
 where "nvcc" is installed.
 EOF
 fi
-
-local/nnet3/multi_condition/run_ivector_common.sh --stage $stage  \
-                                 --speed-perturb ${speed_perturb} \
-                                 --num-data-reps ${num_data_reps} \
-                                 --rvb-affix ${nnet3_affix}
 
 if [ "$speed_perturb" == "true" ]; then
   train_set=${train_set}_sp
