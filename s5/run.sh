@@ -184,15 +184,15 @@ steps/align_fmllr.sh --nj $nCPU --cmd "$train_cmd" \
 
 finishTime=$(date +'%F-%H-%M')
 echo "GMM trainig is finished at" $finishTime
-
+exit
 ## online chain recipe using only clean data set
 echo "#### online chain training  ###########"
 ## check point: sudo nvidia-smi --compute-mode=3 if you have multiple GPU's
 #local/chain/run_tdnn_1a.sh
 #local/chain/run_tdnn_1b.sh
 #local/chain/multi_condition/run_tdnn_lstm_1e.sh --nj $nCPU
-#local/chain/multi_condition/run_tdnn_1n.sh --nj $nCPU 
-local/chain/run_tdnn_opgru_1c.sh --nj $nCPU
+local/chain/multi_condition/run_tdnn_1n.sh --nj $nCPU 
+#local/chain/run_tdnn_opgru_1c.sh --nj $nCPU
 
 
 finishTime=$(date +'%F-%H-%M')
