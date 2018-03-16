@@ -127,7 +127,11 @@ if [ $stage -le 3 ]; then
   # this will helpfull to reduce time consuming get_egs.sh in nnet3 training
   from=data/${trainset}
   to=data/${trainset}_rvb${num_data_reps}_hires
-
+  
+  for i in `seq 1 $nj`; do
+	  cat data/${trainset}/split$nj/$i/reco2dur
+  done | sort -k1 > $from/reco2dur  
+  
   if [ -f $to/utt2dur ] ; then
     rm $to/uttdur
   fi
