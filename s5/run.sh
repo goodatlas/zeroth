@@ -184,7 +184,7 @@ steps/align_fmllr.sh --nj $nCPU --cmd "$train_cmd" \
 
 finishTime=$(date +'%F-%H-%M')
 echo "GMM trainig is finished at" $finishTime
-exit
+
 ## online chain recipe using only clean data set
 echo "#### online chain training  ###########"
 ## check point: sudo nvidia-smi --compute-mode=3 if you have multiple GPU's
