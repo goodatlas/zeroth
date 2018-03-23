@@ -69,7 +69,7 @@ To create a custom language model and phonetic dictionary: [s5 / data / local / 
 ***
 
 # Project: Zeroth
-* 칼디를 이용하여 구축하는 한국어 음성인식
+* 칼디를 이용하여 구축하는 한국어 음성인식 오픈소스
 * License: Apache 2.0
 
 Zeroth 프로젝트는 Kaldi open source tool-kit 을 사용해서 한국어 음성인식기를 구현하는 프로젝트 입니다. 
