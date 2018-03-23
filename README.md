@@ -19,6 +19,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * Zeroth was developed in collaboration with Wonkyum Lee (wonkyum@gridspace.com) at [Gridspace Inc.] (https://www.gridspace.com).
 
 ### Mentioned links
+* [OpenSLR] (http://www.openslr.org/40/)
 * [Data Science Seminar] (http://www.fastcampus.co.kr/data_camp_lab/) @ FastCampus
 * [Workshop](https://www.kmobile.co.kr/shop/academy/음성인식-기술의-이해-및-음성인식-시스템kaldi-구현-1day-워/) @ kmobile
 * [Interview] (http://blog.naver.com/fastcampus/221181060609) with FastCampus
@@ -31,6 +32,8 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 * As of 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 people, 3000 sentences)
 * License: [CC BY 4.0] (https://creativecommons.org/licenses/by/4.0/)
+* Now 51.6 hour audio and LM data is available at [OpenSLR](http://www.openslr.org/40/)
+* Audio crowdsource from MoreCoin is growing. 70 hours of open-source audio data-base will be opened around April 2018. You can donate yours though the voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin).  
 
 We offer a voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin) that you can use to participate in building our open source database of Korean training data.
 
@@ -86,6 +89,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * [Gridspace Inc.](https://www.gridspace.com) 사에서 일하고 계신 Wonkyum Lee 님과의 co-work 를 통해 이 프로젝트를 진행하고 있음을 밝힙니다. 
 
 ### Mentioned links
+* [OpenSLR](http://www.openslr.org/40/)
 * [데이터 사이언스 논문 세미나](http://www.fastcampus.co.kr/data_camp_lab/) @ FastCampus
 * [워크샵](https://www.kmobile.co.kr/shop/academy/음성인식-기술의-이해-및-음성인식-시스템kaldi-구현-1day-워/) @ kmobile
 * [Interview](http://blog.naver.com/fastcampus/221181060609) with FastCampus
@@ -98,6 +102,8 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 * 2018.02.03: 51.6 시간 한국어 학습데이터 (22,263 발화, 105명, 3000 문장)
 * License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+* 현재 [OpenSLR] (http://www.openslr.org/40/)에서 51.6 시간 오디와 LM 데이터를 받아보실 수 있습니다.
+* 모어코인을 통한 기부로 오픈소스 오디오가 커지고 있습니다. 4월에는 1시간 기부시 70시간 데이터를 받아보실 수 있습니다. [모어코인](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)앱을 통해 음성을 기부해 주세요. 
 
 현재 제로스 프로젝트에는 상기와 같은 음성데이터가 포함되어 있습니다.
 공개 음성 DB 구축에 참여할 수 있는 음성 녹음 앱 [모아코인(Android)](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)을 제공하고 있으며, 
