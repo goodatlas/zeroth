@@ -94,7 +94,6 @@ if $rescore ; then
 
 	# below is to show best-path decoding result in text
 	lattice-copy "ark:gunzip -c $dir/lmre_lat.1.gz|" ark:- |\
-		lattice-best-path --word-symbol-table=$symtab ark:- ark,t:- |\
-		$utils/int2sym.pl -f 2- $symtab | sed 's:\<UNK\>::g'
+		lattice-best-path --word-symbol-table=$symtab ark:- ark,t:-
 fi
 rm -f wav.scp spk2utt
