@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Based mostly on the WSJ/Librispeech recipe. The training database is #####,
-# it consists of 51hrs korean speech with cleaned automatic transcripts:
+# it consists of 70 hrs korean speech with cleaned automatic transcripts:
 #
 # http://www.openslr.org/resources (Mirror).
 #
@@ -34,7 +34,7 @@ startTime=$(date +'%F-%H-%M')
 echo "started at" $startTime
 
 # download the data.  
-for part in train_data_01 test_data_01; do
+for part in train_data_01 train_data_02 test_data_01; do
 	local/download_and_untar.sh $data $part
 done
 
@@ -42,13 +42,13 @@ done
 local/download_lm.sh data/local/lm
 
 # format the data as Kaldi data directories
-for part in train_data_01 test_data_01; do
+for part in train_data_01 train_data_02 test_data_01; do
 	# use underscore-separated names in data directories.
 	local/data_prep.sh $data/$part data/$(echo $part | sed s/-/_/g)
 done
 
 # update segmentation of transcripts
-for part in train_data_01 test_data_01; do
+for part in train_data_01 train_data_02 test_data_01; do
 	local/updateSegmentation.sh data/$part data/local/lm
 done
 
@@ -77,17 +77,19 @@ if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]]; then
   utils/create_split_dir.pl /mnt/{ares,hephaestus,jupiter,neptune}/$USER/kaldi-data/zeroth-kaldi/s5/$mfcc/storage \
     $mfccdir/storage
 fi
-for part in train_data_01 test_data_01; do
+for part in train_data_01 train_data_02 test_data_01; do
 	steps/make_mfcc.sh --cmd "$train_cmd" --nj $nCPU data/$part exp/make_mfcc/$part $mfccdir
 	steps/compute_cmvn_stats.sh data/$part exp/make_mfcc/$part $mfccdir
 done
 
-# ... and then combine data sets into one (for later extension)
-utils/combine_data.sh \
-  data/train_clean data/train_data_01
+# Combine data sets and split trainset and testset
+utils/combine_data.sh data/merged data/train_data_01 data/test_data_01
+local/split_dataset.sh --ratio 20 data/merged data/trainset_01 data/testset_01
+local/split_dataset.sh --ratio 20 data/train_data_02 data/trainset_02 data/testset_02
 
-utils/combine_data.sh \
-  data/test_clean data/test_data_01
+# Merge trainsets and testsets
+utils/combine_data.sh data/train_clean data/trainset_01 data/trainset_02
+utils/combine_data.sh data/test_clean  data/testset_01 data/testset_02
 
 # Make some small data subsets for early system-build stages.
 utils/subset_data_dir.sh --shortest data/train_clean 2000 data/train_2kshort
@@ -96,9 +98,9 @@ utils/subset_data_dir.sh data/train_clean 10000 data/train_10k
 
 echo "#### Monophone Training ###########"
 # train a monophone system & align
-steps/train_mono.sh --boost-silence 1.25 --nj $nCPU --cmd "$train_cmd" \
+steps/train_mono.sh --boost-silence 1.25 --nj 10 --cmd "$train_cmd" \
 	data/train_2kshort data/lang_nosp exp/mono
-steps/align_si.sh --boost-silence 1.25 --nj $nCPU --cmd "$train_cmd" \
+steps/align_si.sh --boost-silence 1.25 --nj 10 --cmd "$train_cmd" \
 	data/train_5k data/lang_nosp exp/mono exp/mono_ali_5k
 
 echo "#### Triphone Training, delta + delta-delta ###########"
@@ -107,7 +109,7 @@ echo "#### Triphone Training, delta + delta-delta ###########"
 #  recognition result 
 steps/train_deltas.sh --boost-silence 1.25 --cmd "$train_cmd" \
     2000 10000 data/train_5k data/lang_nosp exp/mono_ali_5k exp/tri1
-steps/align_si.sh --nj $nCPU --cmd "$train_cmd" \
+steps/align_si.sh --nj 10 --cmd "$train_cmd" \
   data/train_10k data/lang_nosp exp/tri1 exp/tri1_ali_10k
 
 echo "#### Triphone Training, LDA+MLLT ###########"
@@ -117,7 +119,7 @@ steps/train_lda_mllt.sh --cmd "$train_cmd" \
    data/train_10k data/lang_nosp exp/tri1_ali_10k exp/tri2b
 
 # Align a 10k utts subset using the tri2b model
-steps/align_si.sh  --nj $nCPU --cmd "$train_cmd" --use-graphs true \
+steps/align_si.sh  --nj 10 --cmd "$train_cmd" --use-graphs true \
   data/train_clean data/lang_nosp exp/tri2b exp/tri2b_ali_train_clean
 
 echo "#### Triphone Training, LDA+MLLT+SAT ###########"
