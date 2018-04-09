@@ -27,11 +27,13 @@ AUDIOINFO='AUDIO_INFO'
 AUDIOLIST=$2
 bucketname="zeroth-opensource"
 # download audio info file
-aws s3 cp s3://$bucketname/$AUDIOINFO $data/$AUDIOINFO
-success=$(echo $?)
-if [ $success -ne 0 ]; then
-	echo "Download from AWS is failed, check your credential and configure your aws CLI"
-	exit 1
+if [ ! -f $data/$AUDIOINFO ]; then
+    aws s3 cp s3://$bucketname/$AUDIOINFO $data/$AUDIOINFO
+    success=$(echo $?)
+    if [ $success -ne 0 ]; then
+        echo "Download from AWS is failed, check your credential and configure your aws CLI"
+        exit 1
+    fi
 fi
 
 # download Audio
