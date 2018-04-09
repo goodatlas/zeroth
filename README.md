@@ -31,7 +31,8 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ## 1. Audio Data
 
-* As of 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 people, 3000 sentences)
+* **9 April 2018: 76.6 hours (35,139 utterances, 137 speakers, 16472 uniq. sentences)**
+* 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 speakers, 3000 sentences)
 * License: [CC BY 4.0] (https://creativecommons.org/licenses/by/4.0/)
 * Now 51.6 hour audio and LM data is available at [OpenSLR](http://www.openslr.org/40/)
 * Audio crowdsource from MoreCoin is growing. 70 hours of open-source audio data-base will be opened around April 2018. You can donate yours though the voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin).  
@@ -56,19 +57,19 @@ Zeroth's language model and phonetic dictionary use an end-to-end data driven ap
 To create a custom language model and phonetic dictionary: [s5 / data / local / lm / README.md] (https://github.com/goodatlas/zeroth/blob/master/s5/data/local/lm/README.md).
 
 * Corpus (Corpus)
-  * Training sentences: 108,408,327
-  * Test sentences: 12,045,282
-  * Total: 120,453,609
+  * Training sentences: 109,037,699
+  * Test sentences: 12,115,208
+  * Total: 121,152,907
 
 * Phonetic Dictionary
-  * Unique words: 29,832,494
-  * Unique words with the highest 98% frequency: 7,991,121
-  * Unique morphemes: 458,406
-  * Size of phonetic dictionary considering pronunciation diversity: 688,503
+  * Unique words: 30,064,143
+  * Unique words with the highest 98% frequency: 8,069,252
+  * Unique morphemes: 465,253
+  * Size of phonetic dictionary considering pronunciation diversity: 686,839
 
 * Language Model
-  * Perplexity test 3-gram: ppl = 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
-  * Perplexity test 4-gram: ppl = 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+  * Perplexity test 3-gram: ppl= 221.2969 (12,115,208 sentences, 194,940,635 words, 0 OOVs)
+  * Perplexity test 4-gram: ppl= 187.2058 (12,115,208 sentences, 194,940,635 words, 0 OOVs)
 
 ***
 
@@ -102,6 +103,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ## 1. Audio Data
 
+* **2018.04.09: 76.6 시간 (35,139발화, 137명, 16,472문장)**
 * 2018.02.03: 51.6 시간 한국어 학습데이터 (22,263 발화, 105명, 3000 문장)
 * License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * 현재 [OpenSLR] (http://www.openslr.org/40/)에서 51.6 시간 오디와 LM 데이터를 받아보실 수 있습니다.
@@ -137,16 +139,16 @@ AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 cred
 참조하시기 바랍니다.
 
 * 말뭉치(Corpus)
-  * 훈련된 문장의 수: 108,408,327
-  * 테스트 문장의 수:  12,045,282
-  * 전 체:         120,453,609
+  * 훈련된 문장의 수: 109,037,699
+  * 테스트 문장의 수:  12,115,208
+  * 전 체:         121,152,907
 
 * 발음사전(Lexicon)
-  * 고유한 단어의 수: 29,832,494 
-  * 상위 98% 빈도 수를 보이는 고유한 단어의 수: 7,991,121
-  * Data-drive 방식으로 찾은 고유한 형태소의 수: 458,406
-  * 발음 다양성을 고려한 발음사전의 크기: 688,503
+  * 고유한 단어의 수: 30,064,143 
+  * 상위 98% 빈도 수를 보이는 고유한 단어의 수: 8,069,252
+  * Data-drive 방식으로 찾은 고유한 형태소의 수: 465,253
+  * 발음 다양성을 고려한 발음사전의 크기: 686,839
 
 * 언어모델(Language Model)
-  * Perplexity test 3-gram: ppl= 220.4536 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
-  * Perplexity test 4-gram: ppl= 186.458 (12,045,282 sentences, 194,241,480 words, 26,845 OOVs)
+  * Perplexity test 3-gram: ppl= 221.2969 (12,115,208 sentences, 194,940,635 words, 0 OOVs)
+  * Perplexity test 4-gram: ppl= 187.2058 (12,115,208 sentences, 194,940,635 words, 0 OOVs)
