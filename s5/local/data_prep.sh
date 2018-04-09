@@ -36,17 +36,17 @@ utt2dur=$dst/utt2dur; [[ -f "$utt2dur" ]] && rm $utt2dur
 
 for scriptid_dir in $(find -L $src -mindepth 1 -maxdepth 1 -type d | sort); do
   scriptid=$(basename $scriptid_dir)
-  if ! [ $scriptid -eq $scriptid ]; then  # not integer.
-    echo "$0: unexpected subdirectory name $scriptid"
-    exit 1;
-  fi
+  #if ! [ $scriptid -eq $scriptid ]; then  # not integer.
+  #  echo "$0: unexpected subdirectory name $scriptid"
+  #  exit 1;
+  #fi
   
   for reader_dir in $(find -L $scriptid_dir/ -mindepth 1 -maxdepth 1 -type d | sort); do
     reader=$(basename $reader_dir)
-    if ! [ "$reader" -eq "$reader" ]; then
-      echo "$0: unexpected reader-subdirectory name $reader"
-      exit 1;
-    fi
+    #if ! [ "$reader" -eq "$reader" ]; then
+    #  echo "$0: unexpected reader-subdirectory name $reader"
+    #  exit 1;
+    #fi
 
 	reader_gender=$(egrep "^$reader\|" $spk_file | awk -F'|' '{gsub(/[ ]+/, ""); print tolower($3)}')
 	if [ "$reader_gender" != 'm' ] && [ "$reader_gender" != 'f' ]; then
