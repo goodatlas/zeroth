@@ -4,6 +4,13 @@
 # Apache 2.0
 
 # do this when the segmentation rule is changed
+# $KALDI_ROOT/tools/extras/install_morfessor.sh is merged 
+# at revision 5e6bd39e0ec0e510cb7202990c22fe8b8b9d817c
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <data-dir> <lm-dir>"
+    echo "   ex: $0 data/train_data_01 data/local/lm"
+    exit 1
+fi
 dataDir=$1
 lmDir=$2
 
@@ -11,10 +18,15 @@ exists(){
 	command -v "$1" >/dev/null 2>&1
 }
 
+. ./path.sh
 # check morfessor installation 
 if ! exists morfessor; then
-	echo "Please, install Morfessor"
-	exit 1
+	echo "Morfessor is not installed, so install it"
+    wd=`pwd`
+    cd $KALDI_ROOT/tools
+    ./extras/install_morfessor.sh
+    cd $wd
+    . ./path.sh
 fi
 
 trans=$dataDir/text
@@ -32,20 +44,3 @@ cut -d' ' -f2- $trans".old" |\
 	--nosplit-re '[0-9\[\]\(\){}a-zA-Z&.,\-]+' \
 	| paste -d" " $trans"_tmp_index" - > $trans
 rm -f $trans"_tmp_index"
-
-#transcripList=$(find $dataDir -name "*.norm.txt" -type f | sort)
-#for transcript in $transcripList;
-#do
-#	echo "read: " $transcript
-#	cat $transcript | awk '{print $1;}' > tmp
-#	cat $transcript | awk '{$1="";print $0;}' | \
-#	local/strip.py | \
-#	#morfessor -l $lmDir/data/_lexicon_/mergedCorpus.model4.reduced -T - -o tmp2 --output-format '{analysis} ' --output-newlines
-#	morfessor -l $lmDir/zeroth_morfessor.seg -T - -o tmp2 --output-format '{analysis} ' --output-newlines
-#	#$lmDir/data/_lm_/seg2sentence.py tmp2 > tmp3
-#
-#	array=(${transcript//\./ })
-#	echo "write: " ${array[0]}.${array[1]}.txt
-#	paste -d" " tmp tmp2 > ${array[0]}.${array[1]}.txt
-#done
-#rm -f tmp*
