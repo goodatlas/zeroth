@@ -141,8 +141,20 @@ if [ $stage -le 9 ]; then
   done
   sort -u $lat_dir/temp/combined_lats.scp > $lat_dir/temp/combined_lats_sorted.scp
 
-  lattice-copy scp:$lat_dir/temp/combined_lats_sorted.scp "ark:|gzip -c >$lat_dir/lat.1.gz" || exit 1;
-  echo "1" > $lat_dir/num_jobs
+  num_jobs=30
+  split_scps=""
+  for n in `seq $num_jobs`; do
+      split_scps="$split_scps $lat_dir/temp/combined_lats_sorted.$n.scp"
+  done
+  utils/split_scp.pl $lat_dir/temp/combined_lats_sorted.scp $split_scps
+  
+  $train_cmd JOB=1:$num_jobs $lat_dir/temp/split_scp_copy.JOB.log \
+      lattice-copy scp:$lat_dir/temp/combined_lats_sorted.JOB.scp "ark:|gzip -c >$lat_dir/lat.JOB.gz" \
+      || exit 1;
+  echo $num_jobs > $lat_dir/num_jobs
+
+  #lattice-copy scp:$lat_dir/temp/combined_lats_sorted.scp "ark:|gzip -c >$lat_dir/lat.1.gz" || exit 1;
+  #echo "1" > $lat_dir/num_jobs
 
   # copy other files from original lattice dir
   for f in cmvn_opts final.mdl splice_opts tree; do
@@ -219,9 +231,10 @@ fi
 
 
 if [ $stage -le 12 ]; then
-  if [[ $(hostname -f) == *.clsp.jhu.edu ]] && [ ! -d $dir/egs/storage ]; then
-    utils/create_split_dir.pl \
-     /export/b0{3,4,5,6}/$USER/kaldi-data/egs/wsj-$(date +'%m_%d_%H_%M')/s5/$dir/egs/storage $dir/egs/storage
+  hostInAtlas="ares hephaestus jupiter neptune"
+  if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]] && [ ! -d $dir/egs/storage ]; then
+    utils/create_split_dir.pl /mnt/{ares,hephaestus,jupiter,neptune}/$USER/kaldi-data/zeroth-kaldi/s5/$dir/egs/storage \
+      $dir/egs/storage
   fi
 
   steps/nnet3/chain/train.py --stage $train_stage \
