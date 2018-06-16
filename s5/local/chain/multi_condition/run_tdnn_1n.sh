@@ -141,7 +141,7 @@ if [ $stage -le 9 ]; then
   done
   sort -u $lat_dir/temp/combined_lats.scp > $lat_dir/temp/combined_lats_sorted.scp
 
-  num_jobs=30
+  num_jobs=10
   split_scps=""
   for n in `seq $num_jobs`; do
       split_scps="$split_scps $lat_dir/temp/combined_lats_sorted.$n.scp"
