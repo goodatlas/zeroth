@@ -89,7 +89,7 @@ if [ $stage -le 3 ]; then
   ### applied GridEngine for speed-up
   logdir=data/${trainset}/log
   mkdir -p $logdir
-  nj=40
+  nj=20
 
   utils/split_data.sh data/$trainset $nj
 

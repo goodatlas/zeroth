@@ -10,10 +10,10 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
-final_graph_dir=/home/lucasjo/_prj_/zeroth-kaldi/s5/exp/chain/tree_a/graph_tgsmall
-final_model_dir=/home/lucasjo/_prj_/zeroth-kaldi/s5/exp/chain/tdnn_lstm_1e_rvb_online
-small_lm=/home/lucasjo/_prj_/zeroth-kaldi/s5/data/lang_test_tgsmall/G.fst
-large_lm=/home/lucasjo/_prj_/zeroth-kaldi/s5/data/lang_test_fglarge/G.carpa
+final_graph_dir=/home/ubuntu/_prjs_/zeroth/s5/exp/chain_rvb/tree_a/graph_tgsmall
+final_model_dir=/home/ubuntu/_prjs_/zeroth/s5/exp/chain_rvb/tdnn1n_rvb_online
+small_lm=/home/ubuntu/_prjs_/zeroth/s5/data/lang_test_tgsmall/G.fst
+large_lm=/home/ubuntu/_prjs_/zeroth/s5/data/lang_test_fglarge/G.carpa
 
 dir=$1/test/models/korean/zeroth
 mkdir -p $dir
@@ -41,5 +41,6 @@ var=$(echo "$var" | sed 's/\//\\\//g')
 replace="test/models/korean/zeroth/"
 replace=$(echo "$replace" | sed 's/\//\\\//g')
 sed -i "s/$var/$replace/g" $dir/conf/ivector_extractor.conf
+sed -i "s/$var/$replace/g" $dir/conf/online.conf
 
 #cp -rpf local/zeroth_korean_tdnn_lstm.yaml $1
