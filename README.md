@@ -31,7 +31,8 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 
 ## 1. Audio Data
 
-* **9 April 2018: 76.6 hours (35,139 utterances, 137 speakers, 16472 uniq. sentences)**
+* **16 July 2018: 95.7 hours (46,347 utterances, 181 speakers, 27,330 uniq. sentences)**
+* 9 April 2018: 76.6 hours (35,139 utterances, 137 speakers, 16,472 uniq. sentences)
 * 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 speakers, 3000 sentences)
 * License: [CC BY 4.0] (https://creativecommons.org/licenses/by/4.0/)
 * Now 51.6 hour audio and LM data is available at [OpenSLR](http://www.openslr.org/40/)
@@ -102,8 +103,8 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 <img src="/doc/imgs/Zeroth.png" width="60%">
 
 ## 1. Audio Data
-
-* **2018.04.09: 76.6 시간 (35,139발화, 137명, 16,472문장)**
+* **2018.07.16: 95.7 시간 (46,347발화, 181명, 27,330문장)**
+* 2018.04.09: 76.6 시간 (35,139발화, 137명, 16,472문장)
 * 2018.02.03: 51.6 시간 한국어 학습데이터 (22,263 발화, 105명, 3000 문장)
 * License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 * 현재 [OpenSLR] (http://www.openslr.org/40/)에서 51.6 시간 오디와 LM 데이터를 받아보실 수 있습니다.
