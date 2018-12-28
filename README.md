@@ -109,7 +109,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * 2018.04.09: 76.6 시간 (35,139발화, 137명, 16,472문장)
 * 2018.02.03: 51.6 시간 한국어 학습데이터 (22,263 발화, 105명, 3000 문장)
 * License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-* 현재 [OpenSLR] (http://www.openslr.org/40/)에서 51.6 시간 오디와 LM 데이터를 받아보실 수 있습니다.
+* 현재 [OpenSLR](http://www.openslr.org/40/)에서 51.6 시간 오디와 LM 데이터를 받아보실 수 있습니다.
 * 모어코인을 통한 기부로 오픈소스 오디오가 커지고 있습니다. 4월에는 1시간 기부시 70시간 데이터를 받아보실 수 있습니다. [모어코인](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)앱을 통해 음성을 기부해 주세요. 
 
 현재 제로스 프로젝트에는 상기와 같은 음성데이터가 포함되어 있습니다.
