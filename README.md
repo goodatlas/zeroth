@@ -6,7 +6,7 @@
 
 Zeroth is an open source project for Korean speech recognition implemented using the Kaldi toolkit.
 
-This project was developed as part of Atlas’s (https://www.goodatlas.com) Language AI platform, which enables enterprises to add intelligence to their B2C communications.
+This project was developed as part of Atlas Labs’s (https://www.atlaslabs.ai) Language AI platform, which enables enterprises to add intelligence to their B2C communications.
 
 By introducing an official Korean Kaldi recipe, the Zeroth project aims to make Korean speech recognition more broadly accessible to everyone.
 
@@ -14,7 +14,7 @@ As the name Zeroth, or the 0th, suggests, this project’s aim to be the startin
 
 We hope you find this project useful and welcome any opportunities to discuss or work together.
 
-Contact: Lucas Jo (lucasjo@goodatlas.com)
+Contact: Lucas Jo (lucasjo@atlaslabs.ai)
 
 ### Special thanks
 
