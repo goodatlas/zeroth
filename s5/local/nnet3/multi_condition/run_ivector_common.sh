@@ -136,7 +136,7 @@ if [ $stage -le 3 ]; then
     rm $to/uttdur
   fi
   for i in `seq 0 ${num_data_reps}`; do
-    cat $from/reco2dur | sed -e "s/^/rev${i}_/" >> $to/utt2dur  
+    cat $from/reco2dur | sed -e "s/^/rev${i}-/" >> $to/utt2dur  
   done
   ###
 
@@ -150,7 +150,7 @@ if [ $stage -le 3 ]; then
   # copy the alignments for the newly created utterance ids
   ali_dirs=
   for i in `seq 0 $num_data_reps`; do
-    local/multi_condition/copy_ali_dir.sh --cmd "$decode_cmd" --utt-prefix "rev${i}_" ${gmmdir}_ali_${trainset} ${gmmdir}_ali_${trainset}_temp_$i || exit 1;
+    local/multi_condition/copy_ali_dir.sh --cmd "$decode_cmd" --utt-prefix "rev${i}-" ${gmmdir}_ali_${trainset} ${gmmdir}_ali_${trainset}_temp_$i || exit 1;
     ali_dirs+=" ${gmmdir}_ali_${trainset}_temp_$i"
   done
   steps/combine_ali_dirs.sh data/${trainset}_rvb${num_data_reps} ${gmmdir}_ali_${trainset}_rvb $ali_dirs || exit 1;
