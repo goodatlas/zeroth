@@ -135,9 +135,9 @@ if [ $stage -le 9 ]; then
   # copy the lattices for the reverberated data
   rm -f $lat_dir/temp/combined_lats.scp
   touch $lat_dir/temp/combined_lats.scp
-  # Here prefix "rev0_" represents the clean set, "rev1_" represents the reverberated set
+  # Here prefix "rev0-" represents the clean set, "rev1-" represents the reverberated set
   for i in `seq 0 $num_data_reps`; do
-    cat $lat_dir/temp/lats.scp | sed -e "s/^/rev${i}_/" >> $lat_dir/temp/combined_lats.scp
+    cat $lat_dir/temp/lats.scp | sed -e "s/^/rev${i}-/" >> $lat_dir/temp/combined_lats.scp
   done
   sort -u $lat_dir/temp/combined_lats.scp > $lat_dir/temp/combined_lats_sorted.scp
 
@@ -229,7 +229,7 @@ EOF
   steps/nnet3/xconfig_to_configs.py --xconfig-file $dir/configs/network.xconfig --config-dir $dir/configs/
 fi
 
-
+exit
 if [ $stage -le 12 ]; then
   hostInAtlas="ares hephaestus jupiter neptune"
   if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]] && [ ! -d $dir/egs/storage ]; then
