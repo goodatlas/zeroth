@@ -94,7 +94,7 @@ if [ $stage -le 3 ]; then
   utils/split_data.sh data/$trainset $nj
 
   $train_cmd JOB=1:$nj $logdir/reverberate.JOB.log \
-      python steps/data/reverberate_data_dir.py \
+      steps/data/reverberate_data_dir.py \
       "${rvb_opts[@]}" \
       --prefix "rev" \
       --foreground-snrs "20:10:15:5:0" \
