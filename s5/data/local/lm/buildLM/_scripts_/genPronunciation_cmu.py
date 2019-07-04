@@ -1697,7 +1697,7 @@ def fUpper(match):
     return match.group(0).upper()
 
 def main():
-    filename='buildLM/_scripts_/cmudict-0.7b.txt'
+    filename=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cmudict-0.7b.txt')
     if not os.path.exists(filename):
         print('No dictionary file: %s' % filename)
         sys.exit()
