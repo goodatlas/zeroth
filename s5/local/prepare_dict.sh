@@ -21,6 +21,10 @@ lexicon_raw_nosil=$dst_dir/lexicon_raw_nosil.txt
 
 if [[ ! -s "$lexicon_raw_nosil" ]]; then
 	cp $lm_dir/zeroth_lexicon $lexicon_raw_nosil || exit 1
+	if [ -s $lm_dir/extra_lexicon ]; then
+		env LC_ALL=C sort -u $lexicon_raw_nosil $lm_dir/extra_lexicon > $lexicon_raw_nosil.tmp
+		mv -f $lexicon_raw_nosil.tmp $lexicon_raw_nosil
+	fi
 fi
 
 silence_phones=$dst_dir/silence_phones.txt
