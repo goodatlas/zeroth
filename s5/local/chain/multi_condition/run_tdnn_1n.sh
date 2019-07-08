@@ -229,7 +229,6 @@ EOF
   steps/nnet3/xconfig_to_configs.py --xconfig-file $dir/configs/network.xconfig --config-dir $dir/configs/
 fi
 
-exit
 if [ $stage -le 12 ]; then
   hostInAtlas="ares hephaestus jupiter neptune"
   if [[ ! -z $(echo $hostInAtlas | grep -o $(hostname -f)) ]] && [ ! -d $dir/egs/storage ]; then
