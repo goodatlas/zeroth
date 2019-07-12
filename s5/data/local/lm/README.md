@@ -2,7 +2,7 @@
 
 
 ## 0. phone symbol mapping table in Zeroth
-Caution: For IPA symbol mappings, it has not been tested if it is proper enough to train or not. I'm trying to change the Zeroth phone symbols into IPA from to design a universal acoustic model, But it is not finialized.
+Caution: For IPA symbol mappings, it has not been tested if it is proper enough to train or not. I'm trying to change the Zeroth phone symbols into IPA form to design a universal acoustic model, But it is not finialized.
 
 ```
 CHOSUNG_LIST =  [u'ㄱ', u'ㄲ', u'ㄴ', u'ㄷ', u'ㄸ', u'ㄹ', u'ㅁ', u'ㅂ', u'ㅃ', u'ㅅ',\
