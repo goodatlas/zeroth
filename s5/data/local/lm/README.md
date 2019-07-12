@@ -1,6 +1,36 @@
 # Project: Zeroth
 
 
+## 0. phone symbol mapping table in Zeroth
+Caution: For IPA symbol mappings, it has not been tested if it is proper enough to train or not. I'm trying to change the Zeroth phone symbols into IPA from to design a universal acoustic model, But it is not finialized.
+
+```
+CHOSUNG_LIST =  [u'ㄱ', u'ㄲ', u'ㄴ', u'ㄷ', u'ㄸ', u'ㄹ', u'ㅁ', u'ㅂ', u'ㅃ', u'ㅅ',\
+                 u'ㅆ', u'ㅇ', u'ㅈ', u'ㅉ', u'ㅊ', u'ㅋ', u'ㅌ', u'ㅍ', u'ㅎ']
+JUNGSUNG_LIST = [u'ㅏ', u'ㅐ', u'ㅑ', u'ㅒ', u'ㅓ', u'ㅔ', u'ㅕ', u'ㅖ', u'ㅗ', u'ㅘ',\
+                 u'ㅙ', u'ㅚ', u'ㅛ', u'ㅜ', u'ㅝ', u'ㅞ', u'ㅟ', u'ㅠ', u'ㅡ', u'ㅢ', u'ㅣ']
+JONGSUNG_LIST = [u'_', u'ㄱ', u'ㄲ', u'ㄳ', u'ㄴ', u'ㄵ', u'ㄶ', u'ㄷ', u'ㄹ', u'ㄺ',\
+                 u'ㄻ', u'ㄼ', u'ㄽ', u'ㄾ', u'ㄿ', u'ㅀ', u'ㅁ', u'ㅂ', u'ㅄ', u'ㅅ',\
+                 u'ㅆ', u'ㅇ', u'ㅈ', u'ㅊ', u'ㅋ', u'ㅌ', u'ㅍ', u'ㅎ']
+
+CHOSUNG_SYM =  [u'g', u'gg', u'n', u'd', u'dd', u'l', u'm', u'b', u'bb', u's',\
+                u'ss', u'', u'j', u'jj', u'ch', u'kh', u't', u'p', u'h']
+JUNGSUNG_SYM = [u'a', u'ae', u'ya', u'yae', u'eo', u'e', u'yeo', u'ye', u'o', u'wa',\
+                u'wae', u'oe', u'yo', u'u', u'wo', u'we', u'wi', u'yu', u'eu', u'ui', u'i']
+JONGSUNG_SYM = [u'', u'g2', u'', u'', u'n2', u'', u'', u'd2', u'l2', u'',\
+                u'', u'', u'', u'', u'', u'', u'm2', u'b2', u'', u'',\
+                u'', u'ng', u'', u'', u'', u'', u'', u'']
+
+CHOSUNG_SYM_IPA =  [u'k', u'k͈', u'n', u't', u't͈', u'ɾ', u'm', u'p', u'p͈', u'sʰ',\
+                    u's͈', u'', u't͡ɕ', u't͡ɕ͈', u't͡ɕʰ', u'kʰ', u'tʰ', u'pʰ', u'h']
+JUNGSUNG_SYM_IPA = [u'a', u'ɛ', u'ja̠', u'jɛ̝', u'ʌ̹', u'e', u'jʌ', u'je', u'o', u'wa',\
+                    u'wɛ̝', u'we', u'jo', u'u', u'wʌ', u'we', u'y', u'ju', u'ɯ', u'ɰi', u'i']
+JONGSUNG_SYM_IPA = [u'', u'k̚', u'', u'', u'n', u'', u'', u't̚', u'ɭ', u'',\
+                    u'', u'', u'', u'', u'', u'', u'm', u'p̚', u'', u'',\
+                    u'', u'ŋ', u'', u'', u'', u'', u'', u'']
+```
+
+
 ## 1. Introduction to Korean ASR
 음성인식기를 만들기 위해서는 크게는 음향모델, 언어모델, 발음사전 세 가지가 필요합니다. 
 
