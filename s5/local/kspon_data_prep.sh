@@ -22,9 +22,10 @@ echo "$0: Data preparation for AI Hub Korean speech datasets(2000 speakers, ~100
 mkdir -p $dst || exit 1
 
 [ ! -d $src ] && echo "$0: no such directory $src" && exit 1
+part_dirs=( $src/KsponSpeech_0{1,2,3,4,5} )
 
 echo $0: Unzipping datasets ...
-for part in $src/KsponSpeech_0{1,2,3,4,5}; do
+for part in ${part_dirs[@]}; do
     if [ ! -f $part/.done ]; then
         if [ ! -f $part.zip ]; then
             echo $0: $part.zip is not exists
@@ -34,11 +35,6 @@ for part in $src/KsponSpeech_0{1,2,3,4,5}; do
         (
             set -e
             unzip -oqq $part.zip -d $src/
-
-            for zip in $part/*.zip; do
-                unzip -oqq $zip -d $src/
-            done
-
             touch $part/.done
         ) &
     fi
@@ -62,12 +58,10 @@ echo -n "$0: Generating files.info "
 iter=0
 old_iter=0
 files_info=()
-last_idx=$(ls -1d $src/*/|grep KsponSpeech_|tail -n1|xargs basename|sed 's:KsponSpeech_::g') # it should be 638
-for i in $(seq $last_idx); do
-    data_dir=$src/$(printf "KsponSpeech_%04d" $i)
-    files_info+=($data_dir/files.info)
-    if [ ! -s "$data_dir/files.info" ]; then
-        ( find $data_dir -name '*.pcm'| parallel gen_item {} > $data_dir/files.info ) &
+for part_dir in ${part_dirs[@]}; do
+    files_info+=($part_dir/files.info)
+    if [ ! -s "$part_dir/files.info" ]; then
+        ( find $part_dir -name '*.pcm'| parallel gen_item {} > $part_dir/files.info ) &
         iter=$[iter+1]
     fi
 
@@ -80,7 +74,7 @@ done
 echo
 wait $(jobs -p)
 
-echo -n "$0: Generating kaldi data from files.info "
+echo -n "$0: Generating kspon dataset from files.info "
 :>$dst/wav.scp.tmp>$dst/text.tmp>$dst/utt2spk.tmp>$dst/pronoun.dict.tmp
 for info in ${files_info[@]}; do
     echo -n .
@@ -88,23 +82,33 @@ for info in ${files_info[@]}; do
 
     # Ref. http://ai-hub.promptech.co.kr/notice_product/569
     perl -F'\t' -ane '#next if ($F[2] =~ m:u/:); # Skip the inaudiable(or unclear) utterance of sentence
-         $F[2] =~ s:\((.+?)\)/\((.+?)\):\1:g; #representation
+         $F[2] =~ s:(\d+)\s*/\s*(\d+):\2 분에 \1:g; #Chagne division mark
+         $F[2] =~ s:\.+:.:g; # remove multi-dots
+         $F[2] =~ s:([a-zA-Z])\.([a-zA-Z])\.:\1\2:g; # e.g., D.C.
          $F[2] =~ s:u/::g; # Unclear utterance of sentence mark
          $F[2] =~ s:o/::g; # Noise mark of utterance
          $F[2] =~ s:[lbn]/::g; # Breath, laugh, BG noise mark
          $F[2] =~ s:([가-힣]+?)/:\1:g; # Replace a interjection(filler words)
          $F[2] =~ s:\+::g; # Utterance repetation mark
          $F[2] =~ s:\Q*\E::g; # Unclear words utterance mark
-         $F[2] =~ s:[\?\.\#\!,]::g; # Some other symbols
-         $F[2] =~ s:^\s+::g; # trim left
-         $F[2] =~ s:\s+$::g; # trim right
+         $F[2] =~ s:[\?\#\!,]::g; # Some other symbols
+         $F[2] =~ s:([^\d])\.([^\d]):\1\2:g; # Remove dot with non-numbers
+         $F[2] =~ s:([\d])\.([^\d ]):\1\2:g; # Remove dot with non-numbers
+         $F[2] =~ s:([^\d ])\.([\d]):\1\2:g; # Remove dot with non-numbers
+         #$F[2] =~ s:\((.+?)\)/\((.+?)\):\1:g; #representation (it needs too much exception)
+         $F[2] =~ s:\((.+?)\)/\((.+?)\):\2:g; #representation
+         $F[2] =~ s:([\w가-힣])-([\w가-힣]):\1 \2:g; #remove hyphen mark used to join words
+         $F[2] =~ s:/::g; # remove some slash
+         $F[2] =~ s:^[\s\.]+::g; # trim left
+         $F[2] =~ s:[\s\.]+$::g; # trim right
+         $F[2] =~ s: +: :g; # remove multi-spaces
          print "$F[0] $F[2]\n";' $info >>$dst/text.tmp || exit 1
     awk -F'\t' '{print $1 " sox -t raw -r 16k -b 16 -e signed-integer -L \"" $2 "\" -t wav - | "}' $info >>$dst/wav.scp.tmp || exit 1
-    cut -f4- $info | perl -lane 'next if(/^$/); print "$1\t$2" if(/\((.+?)\)\/\((.+?)\)/)' >>$dst/pronoun.dict.tmp || exit 1
+    cut -f4- $info | perl -lane 'next if(/^$/); print "$1\t$2" if(/\(\s*(.+?)\s*\)\/\(\s*(.+?)\s*\)/)' >>$dst/pronoun.dict.tmp || exit 1
 done
 echo
 
-echo $0: Sorting kaldi data
+echo $0: Sorting kspon dataset
 env LC_ALL=C sort -u $dst/pronoun.dict.tmp > $dst/pronoun.dict
 env LC_ALL=C sort -u $dst/text.tmp > $dst/text.tmp2
 env LC_ALL=C sort -u $dst/utt2spk.tmp > $dst/utt2spk.tmp2
