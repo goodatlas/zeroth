@@ -37,7 +37,9 @@ Contact: Lucas Jo (lucasjo@atlaslabs.ai)
 * 3 February 2018: 51.6 hours transcribed Korean audio for training data (22,263 utterances, 105 speakers, 3000 sentences)
 * License: [CC BY 4.0] (https://creativecommons.org/licenses/by/4.0/)
 * Now 51.6 hour audio and LM data is available at [OpenSLR](http://www.openslr.org/40/)
-* Audio crowdsource from MoreCoin is growing. 70 hours of open-source audio data-base will be opened around April 2018. You can donate yours though the voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin).  
+* Audio crowdsource from MoreCoin is growing. 70 hours of open-source audio data-base will be opened around April 2018. You can donate yours though the voice recording app 
+* [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin).  
+* [MoreCoin (iOX) ] (https://apps.apple.com/ph/app/morecoin/id1351621392?ign-mpt=uo%3D2)
 
 We offer a voice recording app [MoreCoin (Android)] (https://play.google.com/store/apps/details?id=com.goodatlas.morecoin) that you can use to participate in building our open source database of Korean training data.
 
@@ -113,7 +115,7 @@ Contact: Lucas Jo (lucasjo@goodatlas.com)
 * 모어코인을 통한 기부로 오픈소스 오디오가 커지고 있습니다. 4월에는 1시간 기부시 70시간 데이터를 받아보실 수 있습니다. [모어코인](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)앱을 통해 음성을 기부해 주세요. 
 
 현재 제로스 프로젝트에는 상기와 같은 음성데이터가 포함되어 있습니다.
-공개 음성 DB 구축에 참여할 수 있는 음성 녹음 앱 [모아코인(Android)](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)을 제공하고 있으며, 
+공개 음성 DB 구축에 참여할 수 있는 음성 녹음 앱 [모아코인(Android)](https://play.google.com/store/apps/details?id=com.goodatlas.morecoin)을 과 [모아코인(iOS)](https://apps.apple.com/ph/app/morecoin/id1351621392?ign-mpt=uo%3D2)제공하고 있으며, 
 해당 앱을 통해 음성 데이터를 1시간 기부해주시면 해당 시점까지 구축된 공개 음성 DB에 접근하여 다운로드할 수 있는 권한을
 AWS temporary credential 형태로 발급해 드립니다. 한번 발급된 credential은 12 시간 동안 유효합니다.
 더 자세한 내용은 [AWS-temporary-credential](https://github.com/goodatlas/zeroth/wiki/AWS-temporary-credential) 
