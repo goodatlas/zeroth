@@ -1,0 +1,26 @@
+name: Formatter
+
+on:
+  push:
+    branches:
+    - main
+    - dev
+  pull_request:
+    branches:
+    - main
+    - dev
+    - feature/**
+
+jobs:
+  formatter:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Add a problem matcher
+      run: echo "::add-matcher::.github/workflows/matchers/black.json"
+    - name: Format
+      uses: psf/black@stable
+      with:
+        options: "--check --diff --color --line-length 120"
+        jupyter: true
